@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Gramophone player</title>
+  </head>
+  <body>
+    <main class="layout-wrapper">
+      <div class="column">
+        <div class="player-box">
+          <audio id="audio" preload="auto"></audio>
+          <div class="gramophone-box">
+            <img
+              src="images/technics-arm.png"
+              class="arm"
+              alt="gramophone arm"
+            />
+            <img
+              src="images/technics-hold.png"
+              class="holder"
+              alt="gramophone holder"
+            />
+            <img
+              src="images/black-vinyl.png"
+              class="black-vinyl"
+              alt="record runout"
+            />
+            <img src="" class="record" alt="record label" />
+            <input
+              type="range"
+              min="-8"
+              max="8"
+              value="0"
+              step="0.2"
+              class="slider"
+            />
+            <button class="reset-pitch">
+              pitch reset
+            </button>
+            <div class="play-pause"><div class="play-pause-icon"></div></div>
+          </div>
+          <div class="controls-box"><ol class="playlist"></ol></div>
+        </div>
+      </div>
+      <div class="column">
+        <ul class="records-list">
+          <li class="records-item">
+            <div class="cover">
+              <img
+                src="images/records/AphexTwin.jpg"
+                alt="aphex twin"
+                class="cover-img"
+              />
+            </div>
+            <div class="description">
+              <div class="artist">APHEX TWIN</div>
+              <div class="title">Selected Ambient Works 85-92</div>
+              <ol class="tracklist" id="AphexTwin">
+                <li>
+                  Xtal<button class="play" id="AphexTwin-01">&#9654;</button>
+                </li>
+                <li>
+                  Tha<button class="play" id="AphexTwin-02">&#9654;</button>
+                </li>
+              </ol>
+              <button class="playall">
+                Play All
+              </button>
+            </div>
+          </li>
+          <li class="records-item">
+            <div class="cover">
+              <img
+                src="images/records/TonyAllen.jpg"
+                alt="tony allen"
+                class="cover-img"
+              />
+            </div>
+            <div class="description">
+              <div class="artist">Tony ALLEN / JEFF MILLS</div>
+              <div class="title">Tomorrow Comes The Harvest</div>
+              <ol class="tracklist" id="TonyAllen">
+                <li>
+                  Locked & Loaded
+                  <button class="play" id="TonyAllen-01">&#9654;</button>
+                </li>
+                <li>
+                  On The Run<button class="play" id="TonyAllen-02">
+                    &#9654;
+                  </button>
+                </li>
+              </ol>
+              <button class="playall">
+                Play All
+              </button>
+            </div>
+          </li>
+          <li class="records-item">
+            <div class="cover">
+              <img
+                src="images/records/Bluetrain.jpg"
+                alt="bluetrain"
+                class="cover-img"
+              />
+            </div>
+            <div class="description">
+              <div class="artist">BLUETRAIN aka STEVE O'SULLIVAN</div>
+              <div class="title">Sapphire Dubs Vol 1</div>
+              <ol class="tracklist" id="Bluetrain">
+                <li>
+                  Midnight Creeper<button class="play" id="Bluetrain-01">
+                    &#9654;
+                  </button>
+                </li>
+                <li>
+                  Where's Burt?<button class="play" id="Bluetrain-02">
+                    &#9654;
+                  </button>
+                </li>
+              </ol>
+              <button class="playall">
+                Play All
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
+    <script src="player.js"></script>
+  </body>
+</html>

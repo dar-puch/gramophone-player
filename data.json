@@ -1,0 +1,52 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "artist": "APHEX TWIN",
+      "title": "Selected Ambient Works 85-92",
+      "image": "images/records/AphexTwin.jpg",
+      "tracks": [
+        {
+          "trackTitle": "Xtal",
+          "audio": "audio/AphexTwin-01.mp3"
+        },
+        {
+          "trackTitle": "Tha",
+          "audio": "audio/AphexTwin-02.mp3"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "artist": "Tony ALLEN / JEFF MILLS",
+      "title": "Tomorrow Comes The Harvest",
+      "image": "images/records/TonyAllen.jpg",
+      "tracks": [
+        {
+          "trackTitle": "Locked & Loaded",
+          "audio": "audio/TonyAllen-01.mp3"
+        },
+        {
+          "trackTitle": "On The Run",
+          "audio": "audio/TonyAllen-02.mp3"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "artist": "BLUETRAIN aka STEVE O'SULLIVAN",
+      "title": "Sapphire Dubs Vol 1",
+      "image": "images/records/Bluetrain.jpg",
+      "tracks": [
+        {
+          "trackTitle": "Midnight Creeper",
+          "audio": "audio/Bluetrain-01.mp3"
+        },
+        {
+          "trackTitle": "Where's Burt?",
+          "audio": "audio/Bluetrain-02.mp3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Gramophone player</title>
+  </head>
+  <body>
+    <main class="layout-wrapper">
+      <div class="column">
+        <div class="player-box">
+          <audio id="audio" preload="auto"></audio>
+          <div class="gramophone-box">
+            <img
+              src="images/technics-arm.png"
+              class="arm"
+              alt="gramophone arm"
+            />
+            <img
+              src="images/technics-hold.png"
+              class="holder"
+              alt="gramophone holder"
+            />
+            <img
+              src="images/black-vinyl.png"
+              class="black-vinyl"
+              alt="record runout"
+            />
+            <img src="" class="record" alt="record label" />
+            <input
+              type="range"
+              min="-8"
+              max="8"
+              value="0"
+              step="0.2"
+              class="slider"
+            />
+            <button class="reset-pitch">
+              pitch reset
+            </button>
+            <div class="play-pause"><div class="play-pause-icon"></div></div>
+          </div>
+          <div class="controls-box"><ol class="playlist"></ol></div>
+        </div>
+      </div>
+      <div class="column">
+        <ul class="records-list"></ul>
+      </div>
+    </main>
+    <script src="player.js"></script>
+  </body>
+</html>
