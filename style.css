@@ -25,6 +25,10 @@ button {
 button:active {
   color: #afaeae;
 }
+progress {
+  width: 399px;
+  margin: 8px auto;
+}
 
 .layout-wrapper {
   box-sizing: border-box;

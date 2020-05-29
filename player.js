@@ -63,9 +63,11 @@ const slider = document.querySelector(".slider");
 const playlist = document.querySelector(".playlist");
 const resetPitchButton = document.querySelector(".reset-pitch");
 const playAll = document.querySelector(".playall");
+const volume = document.querySelector(".volume");
+const progressBar = document.querySelector(".progress-bar");
+
 let playlistArr = [];
-let nowPlaying = "";
-let isPlaying = false;
+let nowPlaying = {};
 
 const createRecordList = () => {
   records.map((elem) => {
@@ -146,16 +148,22 @@ const clearPlaylist = () => {
   playlistArr.length = 0;
   playlist.innerHTML = "";
 };
+const isPlaying = () => {
+  return audio.currentTime > 0
+      && !audio.paused
+      && !audio.ended
+      && audio.readyState > 2;
+}
 
 const handlePlayPause = () => {
-  isPlaying ? pauseAudio() : playAudio();
+  isPlaying() ? pauseAudio() : playAudio();
 };
 
 const playAudio = () => {
   if (playlistArr.length) {
-    record.src = playlistArr[0].cover;
-    audio.src = playlistArr[0].track;
-
+    nowPlaying = {...playlistArr[0]};
+    record.src = nowPlaying.cover;
+    audio.src = nowPlaying.track;
     record.classList.add("rotate");
     playPauseIcon.classList.add("playing");
     let isArmRotated = arm.classList.contains("move-arm");
@@ -166,14 +174,16 @@ const playAudio = () => {
       }, 1400);
     } else audio.play();
     arm.classList.add("move-arm");
-    isPlaying = true;
   } else return;
 };
-
+const updateProgressBar = () => {
+  if(isPlaying()) {
+    progressBar.value = audio.currentTime/audio.duration;
+  } else progressBar.value = 0;
+}
 const pauseAudio = () => {
   pauseTurntable();
   audio.pause();
-  isPlaying = false;
 };
 
 const pauseTurntable = () => {
@@ -196,32 +206,37 @@ const resetPitch = () => {
   slider.value = 0;
   audio.playbackRate = 1;
 };
-const deleteFromPlaylistArr = (srcToDelete) => {
-  console.log("srcToDelete: ", srcToDelete);
-  const filteringFunc = (rec) => {
-    console.log("rec.track: ", rec.track);
-    rec.track !== srcToDelete;
-  };
-  filtered = playlistArr.filter(filteringFunc);
-  playlistArr = filtered;
-  console.log("playlistArr after deleted:", playlistArr);
+const deleteFromPlaylistArr = (itemToDelete) => {
+  playlistArr = playlistArr.filter(rec => rec.id !== itemToDelete.id);
 };
+
+
+const seek = (event) => {
+  let ratio = event.offsetX / event.srcElement.clientWidth;
+  audio.currentTime = ratio * audio.duration;
+  progressBar.value = ratio / 100;
+}
+
+const onRecordEnd = () => {
+  progressBar.value = 0;
+  deleteFromPlaylistArr(nowPlaying);
+  displayPlaylist();
+  pauseTurntable();
+  if (playlistArr.length) {
+    playAudio();
+  }
+}
+
 const initSetup = () => {
+  progressBar.addEventListener("click", seek);
+  playPause.addEventListener("click", handlePlayPause);
+  slider.addEventListener("change", adjustPitch);
+  slider.addEventListener("resetPitchEvent", adjustPitch);
+  resetPitchButton.addEventListener("click", resetPitch);
+  audio.addEventListener("ended", onRecordEnd);
+  audio.addEventListener('timeupdate', updateProgressBar);
   resetPitch();
   createRecordList();
 };
 
-playPause.addEventListener("click", handlePlayPause);
-slider.addEventListener("change", adjustPitch);
-slider.addEventListener("resetPitchEvent", adjustPitch);
-resetPitchButton.addEventListener("click", resetPitch);
-audio.addEventListener("ended", (e) => {
-  deleteFromPlaylistArr(e.target.src);
-  displayPlaylist();
-  pauseTurntable();
-  isPlaying = false;
-  if (playlistArr.length) {
-    playAudio();
-  }
-});
 initSetup();
