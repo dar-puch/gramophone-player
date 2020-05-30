@@ -114,6 +114,7 @@ progress {
 }
 
 .rotate {
+  -webkit-animation: rotation 2s infinite linear;
   animation: rotation 2s infinite linear;
 }
 
@@ -121,6 +122,7 @@ progress {
   top: 213px;
   right: -17px;
   -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   width: 92px;
   height: 3px;
@@ -142,6 +144,7 @@ progress {
 .slider::-moz-range-thumb {
   width: 16px;
   height: 18px;
+  -moz-appearance: none;
   appearance: none;
   border-radius: 0;
   background: url(images/technics-slider.png);
@@ -210,6 +213,15 @@ ol.tracklist {
   margin: 8px;
   font-size: 15px;
   padding: 4px 8px;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 @keyframes rotation {
