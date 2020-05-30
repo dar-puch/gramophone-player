@@ -87,9 +87,8 @@ const createRecordList = () => {
         [index].addEventListener("click", () => {
           clearPlaylist();
           addToPlaylist(`${elem.image}`, `${track.audio}`, track.trackTitle);
-          console.log("add to playlist called from play");
-          displayPlaylist();
           playAudio();
+          displayPlaylist();
         });
     });
 
@@ -105,7 +104,7 @@ const createRecordList = () => {
   </div>
   <div class="description">
     <div class="artist">${elem.artist}</div>
-    <div class="title">${elem.title}</div>
+    <div class="blue">${elem.title}</div>
     <ol class="tracklist">
     </ol>
     <button class="playall">
@@ -128,10 +127,9 @@ const createRecordList = () => {
             record.trackTitle,
             record.trackId
           );
-          console.log("add to playlist called from playall");
         });
-        displayPlaylist();
         playAudio();
+        displayPlaylist();
       });
   });
 };
@@ -143,6 +141,10 @@ const displayPlaylist = () => {
   playlistArr.map((item) => {
     const newLi = document.createElement("li");
     newLi.innerText = item.title;
+    console.log("item.id === nowPlaying.id", item.id === nowPlaying.id);
+    if (item.id === nowPlaying.id) {
+      newLi.classList.add("blue");
+    }
     playlist.appendChild(newLi);
   });
 };
@@ -219,11 +221,11 @@ const seek = (event) => {
 const onRecordEnd = () => {
   progressBar.value = 0;
   deleteFromPlaylistArr(nowPlaying);
-  displayPlaylist();
   pauseTurntable();
   if (playlistArr.length) {
     playAudio();
   }
+  displayPlaylist();
 };
 
 const initSetup = () => {
