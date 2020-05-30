@@ -1,5 +1,23 @@
 const records = [
   {
+    id: "r3",
+    artist: "BLUETRAIN aka STEVE O'SULLIVAN",
+    title: "Sapphire Dubs Vol 1",
+    image: "images/records/Bluetrain.jpg",
+    tracks: [
+      {
+        trackId: "Bluetrain-01",
+        trackTitle: "Midnight Creeper",
+        audio: "audio/Bluetrain-01.mp3",
+      },
+      {
+        trackId: "Bluetrain-02",
+        trackTitle: "Where's Burt?",
+        audio: "audio/Bluetrain-02.mp3",
+      },
+    ],
+  },
+  {
     id: "r1",
     artist: "APHEX TWIN",
     title: "Selected Ambient Works 85-92",
@@ -7,13 +25,18 @@ const records = [
     tracks: [
       {
         trackId: "AphexTwin-01",
-        trackTitle: "Xtal",
+        trackTitle: "Ptolemy",
         audio: "audio/AphexTwin-01.mp3",
       },
       {
         trackId: "AphexTwin-02",
-        trackTitle: "Tha",
+        trackTitle: "Heliosphan",
         audio: "audio/AphexTwin-02.mp3",
+      },
+      {
+        trackId: "AphexTwin-03",
+        trackTitle: "We Are The Music Makers",
+        audio: "audio/AphexTwin-03.mp3",
       },
     ],
   },
@@ -32,24 +55,6 @@ const records = [
         trackId: "TonyAllen-02",
         trackTitle: "On The Run",
         audio: "audio/TonyAllen-02.mp3",
-      },
-    ],
-  },
-  {
-    id: "r3",
-    artist: "BLUETRAIN aka STEVE O'SULLIVAN",
-    title: "Sapphire Dubs Vol 1",
-    image: "images/records/Bluetrain.jpg",
-    tracks: [
-      {
-        trackId: "Bluetrain-01",
-        trackTitle: "Midnight Creeper",
-        audio: "audio/Bluetrain-01.mp3",
-      },
-      {
-        trackId: "Bluetrain-02",
-        trackTitle: "Where's Burt?",
-        audio: "audio/Bluetrain-02.mp3",
       },
     ],
   },
@@ -149,11 +154,13 @@ const clearPlaylist = () => {
   playlist.innerHTML = "";
 };
 const isPlaying = () => {
-  return audio.currentTime > 0
-      && !audio.paused
-      && !audio.ended
-      && audio.readyState > 2;
-}
+  return (
+    audio.currentTime > 0 &&
+    !audio.paused &&
+    !audio.ended &&
+    audio.readyState > 2
+  );
+};
 
 const handlePlayPause = () => {
   isPlaying() ? pauseAudio() : playAudio();
@@ -161,7 +168,7 @@ const handlePlayPause = () => {
 
 const playAudio = () => {
   if (playlistArr.length) {
-    nowPlaying = {...playlistArr[0]};
+    nowPlaying = { ...playlistArr[0] };
     record.src = nowPlaying.cover;
     audio.src = nowPlaying.track;
     record.classList.add("rotate");
@@ -177,10 +184,8 @@ const playAudio = () => {
   } else return;
 };
 const updateProgressBar = () => {
-  if(isPlaying()) {
-    progressBar.value = audio.currentTime/audio.duration;
-  } else progressBar.value = 0;
-}
+  progressBar.value = isPlaying() ? audio.currentTime / audio.duration : 0;
+};
 const pauseAudio = () => {
   pauseTurntable();
   audio.pause();
@@ -189,17 +194,12 @@ const pauseAudio = () => {
 const pauseTurntable = () => {
   record.classList.remove("rotate");
   playPauseIcon.classList.remove("playing");
-};
-
-const stopAudio = () => {
-  pauseAudio();
   arm.classList.remove("move-arm");
-  audio.currentTime = 0;
 };
 
 const adjustPitch = (event) => {
   let val = event.target.value;
-  audio.playbackRate = 1 + val / 100;
+  audio.playbackRate = (1 + val / 100).toFixed(1);
 };
 
 const resetPitch = () => {
@@ -207,15 +207,14 @@ const resetPitch = () => {
   audio.playbackRate = 1;
 };
 const deleteFromPlaylistArr = (itemToDelete) => {
-  playlistArr = playlistArr.filter(rec => rec.id !== itemToDelete.id);
+  playlistArr = playlistArr.filter((rec) => rec.id !== itemToDelete.id);
 };
-
 
 const seek = (event) => {
   let ratio = event.offsetX / event.srcElement.clientWidth;
   audio.currentTime = ratio * audio.duration;
   progressBar.value = ratio / 100;
-}
+};
 
 const onRecordEnd = () => {
   progressBar.value = 0;
@@ -225,7 +224,7 @@ const onRecordEnd = () => {
   if (playlistArr.length) {
     playAudio();
   }
-}
+};
 
 const initSetup = () => {
   progressBar.addEventListener("click", seek);
@@ -234,7 +233,7 @@ const initSetup = () => {
   slider.addEventListener("resetPitchEvent", adjustPitch);
   resetPitchButton.addEventListener("click", resetPitch);
   audio.addEventListener("ended", onRecordEnd);
-  audio.addEventListener('timeupdate', updateProgressBar);
+  audio.addEventListener("timeupdate", updateProgressBar);
   resetPitch();
   createRecordList();
 };
