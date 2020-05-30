@@ -168,10 +168,10 @@ progress {
 }
 
 .controls-box {
-  background-color: #0000000e;
+  background-color: white;
 }
 .playlist {
-  color: rgba(0, 0, 0, 0.699);
+  color: #b9b8be;
   padding-bottom: 16px;
 }
 
@@ -203,7 +203,7 @@ ol.tracklist {
 .artist {
   color: rgb(151, 151, 151);
 }
-.title {
+.blue {
   color: rgb(87, 178, 231);
 }
 .playall {
