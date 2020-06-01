@@ -26,7 +26,6 @@ let nowPlaying = {};
 
 const createRecordListWithData = async () => {
   const records = await fetchRecords();
-  console.log("records: ", records);
   createRecordList(records);
 };
 
@@ -97,7 +96,6 @@ const displayPlaylist = () => {
   playlistArr.map((item) => {
     const newLi = document.createElement("li");
     newLi.innerText = item.title;
-    console.log("item.id === nowPlaying.id", item.id === nowPlaying.id);
     if (item.id === nowPlaying.id) {
       newLi.classList.add("blue");
     }
