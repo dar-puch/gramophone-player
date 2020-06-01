@@ -5,6 +5,7 @@ const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const SRC = path.resolve(__dirname, "node_modules");
 
 module.exports = {
   entry: {
@@ -29,7 +30,7 @@ module.exports = {
       },
       { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
       {
-        test: /\.(png|jpe?g|gif|woff|woff2|mp3)$/i,
+        test: /\.(png|jpe?g|gif|woff|woff2)$/i,
         use: [
           {
             loader: "file-loader",

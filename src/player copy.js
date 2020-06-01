@@ -1,4 +1,64 @@
-import regeneratorRuntime from "regenerator-runtime";
+const records = [
+  {
+    id: "r3",
+    artist: "BLUETRAIN aka STEVE O'SULLIVAN",
+    title: "Sapphire Dubs Vol 1",
+    image: "images/records/Bluetrain.jpg",
+    tracks: [
+      {
+        trackId: "Bluetrain-01",
+        trackTitle: "Midnight Creeper",
+        audio: "audio/Bluetrain-01.mp3",
+      },
+      {
+        trackId: "Bluetrain-02",
+        trackTitle: "Where's Burt?",
+        audio: "audio/Bluetrain-02.mp3",
+      },
+    ],
+  },
+  {
+    id: "r1",
+    artist: "APHEX TWIN",
+    title: "Selected Ambient Works 85-92",
+    image: "images/records/AphexTwin.jpg",
+    tracks: [
+      {
+        trackId: "AphexTwin-01",
+        trackTitle: "Ptolemy",
+        audio: "audio/AphexTwin-01.mp3",
+      },
+      {
+        trackId: "AphexTwin-02",
+        trackTitle: "Heliosphan",
+        audio: "audio/AphexTwin-02.mp3",
+      },
+      {
+        trackId: "AphexTwin-03",
+        trackTitle: "We Are The Music Makers",
+        audio: "audio/AphexTwin-03.mp3",
+      },
+    ],
+  },
+  {
+    id: "r2",
+    artist: "Tony ALLEN / JEFF MILLS",
+    title: "Tomorrow Comes The Harvest",
+    image: "images/records/TonyAllen.jpg",
+    tracks: [
+      {
+        trackId: "TonyAllen-01",
+        trackTitle: "Locked & Loaded",
+        audio: "audio/TonyAllen-01.mp3",
+      },
+      {
+        trackId: "TonyAllen-02",
+        trackTitle: "On The Run",
+        audio: "audio/TonyAllen-02.mp3",
+      },
+    ],
+  },
+];
 const audio = document.querySelector("#audio");
 const record = document.querySelector(".record");
 const arm = document.querySelector(".arm");
@@ -11,26 +71,10 @@ const playAll = document.querySelector(".playall");
 const volume = document.querySelector(".volume");
 const progressBar = document.querySelector(".progress-bar");
 
-const fetchRecords = async () => {
-  try {
-    const response = await fetch("./data.json");
-    const json = await response.json();
-    return json.records;
-  } catch (e) {
-    console.log("fetch failed", e.message);
-  }
-};
-
 let playlistArr = [];
 let nowPlaying = {};
 
-const createRecordListWithData = async () => {
-  const records = await fetchRecords();
-  console.log("records: ", records);
-  createRecordList(records);
-};
-
-const createRecordList = (records) => {
+const createRecordList = () => {
   records.map((elem) => {
     const tracks = elem.tracks;
     const generatedTracklist = document.createDocumentFragment();
@@ -193,7 +237,7 @@ const initSetup = () => {
   audio.addEventListener("ended", onRecordEnd);
   audio.addEventListener("timeupdate", updateProgressBar);
   resetPitch();
-  createRecordListWithData();
+  createRecordList();
 };
 
 initSetup();

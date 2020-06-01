@@ -1,50 +1,61 @@
 {
   "records": [
     {
-      "id": 1,
-      "artist": "APHEX TWIN",
-      "title": "Selected Ambient Works 85-92",
-      "image": "images/records/AphexTwin.jpg",
-      "tracks": [
-        {
-          "trackTitle": "Xtal",
-          "audio": "audio/AphexTwin-01.mp3"
-        },
-        {
-          "trackTitle": "Tha",
-          "audio": "audio/AphexTwin-02.mp3"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "artist": "Tony ALLEN / JEFF MILLS",
-      "title": "Tomorrow Comes The Harvest",
-      "image": "images/records/TonyAllen.jpg",
-      "tracks": [
-        {
-          "trackTitle": "Locked & Loaded",
-          "audio": "audio/TonyAllen-01.mp3"
-        },
-        {
-          "trackTitle": "On The Run",
-          "audio": "audio/TonyAllen-02.mp3"
-        }
-      ]
-    },
-    {
-      "id": 3,
+      "id": "r3",
       "artist": "BLUETRAIN aka STEVE O'SULLIVAN",
       "title": "Sapphire Dubs Vol 1",
-      "image": "images/records/Bluetrain.jpg",
+      "image": "records/Bluetrain.jpg",
       "tracks": [
         {
+          "trackId": "Bluetrain-01",
           "trackTitle": "Midnight Creeper",
           "audio": "audio/Bluetrain-01.mp3"
         },
         {
+          "trackId": "Bluetrain-02",
           "trackTitle": "Where's Burt?",
           "audio": "audio/Bluetrain-02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "r1",
+      "artist": "APHEX TWIN",
+      "title": "Selected Ambient Works 85-92",
+      "image": "records/AphexTwin.jpg",
+      "tracks": [
+        {
+          "trackId": "AphexTwin-01",
+          "trackTitle": "Ptolemy",
+          "audio": "audio/AphexTwin-01.mp3"
+        },
+        {
+          "trackId": "AphexTwin-01",
+          "trackTitle": "Heliosphan",
+          "audio": "audio/AphexTwin-02.mp3"
+        },
+        {
+          "trackId": "AphexTwin-01",
+          "trackTitle": "We Are The Music Makers",
+          "audio": "audio/AphexTwin-03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "r2",
+      "artist": "Tony ALLEN / JEFF MILLS",
+      "title": "Tomorrow Comes The Harvest",
+      "image": "records/TonyAllen.jpg",
+      "tracks": [
+        {
+          "trackId": "TonyAllen-01",
+          "trackTitle": "Locked & Loaded",
+          "audio": "audio/TonyAllen-01.mp3"
+        },
+        {
+          "trackId": "TonyAllen-02",
+          "trackTitle": "On The Run",
+          "audio": "audio/TonyAllen-02.mp3"
         }
       ]
     }

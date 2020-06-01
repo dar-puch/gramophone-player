@@ -2,7 +2,7 @@
 body {
   font-family: "Roboto", sans-serif;
   color: #212121;
-  padding: 15px;
+  padding: 15px 0;
   font-size: 14px;
 }
 h1,
@@ -39,13 +39,12 @@ progress {
   width: 100%;
 }
 .column {
-  padding: 15px;
+  padding: 15px 0;
   box-sizing: border-box;
   width: 100%;
 }
 
 .player-box {
-  margin: 15px auto;
   width: 400px;
 }
 .gramophone-box {
@@ -234,10 +233,14 @@ ol.tracklist {
 }
 
 @media only screen and (min-width: 907px) {
-  /* .column:not(:last-child) {
-    border-right: solid 1px #bdbdbd;
-  } */
   .column {
     width: 50%;
+    padding: 15px;
+  }
+  .player-box {
+    margin: 15px auto;
+  }
+  body {
+    padding: 15px;
   }
 }
